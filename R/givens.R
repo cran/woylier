@@ -101,7 +101,7 @@ givens_rotation <- function(Wa, angles, stepfraction) {
 #' @returns A frame of on the step of interpolation
 
 construct_moving_frame <- function(Wt, B) {
-  Ft = B %*% Wt
+  Ft = tourr::orthonormalise(B %*% Wt)
   return(Ft)
 }
 
@@ -109,25 +109,26 @@ construct_moving_frame <- function(Wt, B) {
 #' @param nsteps number of steps of interpolation
 #' @param Fa starting pxd frame
 #' @param Fz target pxd frame
-#' @returns array with nsteps matrix. Each matrix is interpolated frame in between starting and target frames.
+#' @returns array with nsteps+1 matrices. Each matrix is interpolated frame in between starting and target frames.
 #' @export
 #' @examples
 #' p <- 4
 #' base1 <- tourr::orthonormalise(tourr::basis_random(p, d=1))
 #' base2 <- tourr::orthonormalise(tourr::basis_random(p, d=1))
-#' path <- givens_full_path(base1, base2, nsteps=10)
+#' path <- woylier::givens_full_path(base1, base2, nsteps=10)
 
 givens_full_path <- function(Fa, Fz, nsteps) {
   B <- preprojection(Fa, Fz)
   Wa <- construct_preframe(Fa, B)
   Wz <- construct_preframe(Fz, B)
   angles <- calculate_angles(Wa, Wz)
-  path <- array(dim = c(nrow(B), ncol(Wa), nsteps))
+  path <- array(dim = c(nrow(B), ncol(Wa), nsteps+1))
+  path[,,1] <- Fa
   for (i in 1:nsteps) {
     stepfraction <- i/nsteps
     Wt = givens_rotation(Wa, angles, stepfraction)
     Ft = construct_moving_frame(Wt, B)
-    path[,,i] <- Ft
+    path[,,i+1] <- Ft
   }
   return(path)
 }

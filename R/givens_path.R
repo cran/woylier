@@ -7,7 +7,7 @@ frozen <- NULL
 #' @export
 #' @examples
 #' data(sine_curve)
-#' tourr::animate(sine_curve, grand_tour_givens(), tourr::display_xy())
+#' tourr::animate(sine_curve, woylier::grand_tour_givens(), tourr::display_xy())
 grand_tour_givens <- function(d = 2, ...) {
   generator <- function(current, data, ...) {
     if (is.null(current)) {
@@ -137,7 +137,7 @@ guided_tour_givens <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.
 
 #' Path needed for tour with Givens interpolation
 #' @param name name to give tour path
-#' @param generate basis generator function
+#' @param generator basis generator function
 #' @param frozen matrix giving frozen variables, as described in
 #'   \code{freeze}
 #' @return creates path for Givens interpolation
@@ -183,15 +183,15 @@ new_givens_path <- function(name, generator, frozen = NULL, ...) {
 #' or start from the beginning once more (if \code{cycle = TRUE}).
 #'
 #' Usually, you will not call this function directly, but will pass it to
-#' a method that works with tour paths like \code{\link{animate}},
-#' \code{\link{save_history}} or \code{\link{render}}.
+#' a method that works with tour paths like \code{\link[tourr:animate]{tour::animate()}},
+#' \code{\link[tourr:save_history]{tourr::save_history()}} or \code{\link[tourr:render]{tourr::render()}}.
 #'
 #' @param basis_set the set of bases as a list of projection matrices
 #'   or a 3d array
 #' @param cycle cycle through continuously (\code{TRUE}) or stop after
 #'   first pass (\code{FALSE})
 #' @keywords hplot dynamic
-#' @seealso The \code{\link{little_tour}}, a special type of planned tour
+#' @seealso The \code{\link[tourr:little_tour]{tourr::little_tour()}}, a special type of planned tour
 #'   which cycles between all axis parallel projections.
 #' @return creates planned tour path
 #' @export
@@ -199,10 +199,10 @@ new_givens_path <- function(name, generator, frozen = NULL, ...) {
 #' library(tourr)
 #' twod <- save_history(flea[, 1:3], max = 5)
 #' str(twod)
-#' animate_xy(flea[, 1:3], planned_tour_givens(twod))
-#' animate_xy(flea[, 1:3], planned_tour_givens(twod, TRUE))
-#' oned <- save_history(flea[, 1:6], grand_tour(1), max = 3)
-#' animate_dist(flea[, 1:6], planned_tour_givens(oned))
+#' tourr::animate_xy(flea[, 1:3], woylier::planned_tour_givens(twod))
+#' tourr::animate_xy(flea[, 1:3], woylier::planned_tour_givens(twod, TRUE))
+#' oned <- tourr::save_history(flea[, 1:6], tourr::grand_tour(1), max = 3)
+#' tourr::animate_dist(flea[, 1:6], woylier::planned_tour_givens(oned))
 planned_tour_givens <- function(basis_set, cycle = FALSE) {
   index <- 1
   basis_set <- as.list(basis_set)

@@ -8,15 +8,24 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-This method generates a tour path by interpolating between d-D frames in p-D using Givens rotations. The algorithm arises from the problem of zeroing elements of a matrix. This interpolation method is useful for showing specific d-D frames in the tour, as opposed to d-D planes, as done by the geodesic interpolation. It is useful for projection pursuit indexes which are not s invariant. See Buja et al (2005) \doi{10.1016/S0169-7161(04)24014-7}.
+This method generates a tour path by interpolating between d-D frames in p-D using Givens rotations. The algorithm arises from the problem of zeroing elements of a matrix. This interpolation method is useful for showing specific d-D frames in the tour, as opposed to d-D planes, as done by the geodesic interpolation. It is useful for projection pursuit indexes which are not s invariant. See more details in Buj, Cook, Asimov and Hurley (2005) \doi{10.1016/S0169-7161(04)24014-7} and Batsaikhan, Cook and Laa (2023) \doi{10.48550/arXiv.2311.08181}.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://numbats.github.io/woylier/}
+  \item \url{https://github.com/numbats/woylier}
+  \item Report bugs at \url{https://github.com/numbats/woylier/issues}
+}
+
 }
 \author{
-\strong{Maintainer}: Zola Batsaikan \email{zoljargal11@gmail.com} (\href{https://orcid.org/0009-0005-0055-1448}{ORCID})
+\strong{Maintainer}: Dianne Cook \email{dicook@monash.edu} (\href{https://orcid.org/0000-0002-3813-7155}{ORCID})
 
 Authors:
 \itemize{
-  \item Dianne Cook \email{dicook@monash.edu} (\href{https://orcid.org/0000-0002-3813-7155}{ORCID}) [contributor]
-  \item Ursula Laa \email{ursula.laa@boku.ac.at} (\href{https://orcid.org/0000-0002-0249-6439}{ORCID}) [contributor]
+  \item Zola Batsaikan \email{zoljargal11@gmail.com} (\href{https://orcid.org/0009-0005-0055-1448}{ORCID})
+  \item Ursula Laa \email{ursula.laa@boku.ac.at} (\href{https://orcid.org/0000-0002-0249-6439}{ORCID})
 }
 
 }
